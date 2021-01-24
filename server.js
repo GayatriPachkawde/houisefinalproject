@@ -2,11 +2,11 @@ const { uniqueRandomNumbers } = require("./handlers/TicketHandlers");
 require("dotenv").config();
 // const jwt = require("jwt-then");
 const jwt = require("jsonwebtoken");
-
+const PORT = 8000 || process.env.PORT;
 let intervalId;
 
 const mongoose = require("mongoose");
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
@@ -26,8 +26,8 @@ require("./models/gameRoom");
 const app = require("./app");
 const gameRoom = require("./models/gameRoom");
 
-const server = app.listen(process.env.PORT, () => {
-  console.log(`Server listening on port ${process.env.PORT}`);
+const server = app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
 
 const io = require("socket.io")(server);
