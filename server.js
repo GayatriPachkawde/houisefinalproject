@@ -22,18 +22,9 @@ mongoose.connection.once("open", () => {
 //Models
 require("./models/User");
 require("./models/gameRoom");
-
-const path = require("path");
-
-// ... other app.use middleware
-app.use(express.static(path.join(__dirname, "client", "build")));
-
 const app = require("./app");
-const gameRoom = require("./models/gameRoom");
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+const gameRoom = require("./models/gameRoom");
 
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
