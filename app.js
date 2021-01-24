@@ -16,16 +16,8 @@ app.use("/gameroom", require("./routes/gameRoom"));
 app.use(errorHandlers.notFound);
 app.use(errorHandlers.mongooseErrors);
 
-const path = require("path");
-
-// ... other app.use middleware
-app.use(express.static(path.join(__dirname, "client", "build")));
-
 // ...
 // Right before your app.listen(), add this:
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
 
 // if (process.env.ENV === "DEVELOPMENT") {
 //   app.use(errorHandlers.developmentErrors);
